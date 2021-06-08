@@ -1,4 +1,4 @@
-FROM freedomkk/tomcat-maven:8
+FROM freedomkk/tomcat-maven:latest
 
 ENV BUILD_DIR /tmp/lodestar/
 
@@ -11,7 +11,7 @@ WORKDIR $BUILD_DIR/lodestar/
 ADD ./config-docker/lode.properties web-ui/src/main/resources/lode.properties
 
 RUN mvn clean package && \
-  cp web-ui/target/lodestar.war $CATALINA_HOME/webapps/ && \
+  cp web-ui/target/lodestar.war $CATALINA_HOME/webapps/lode.war && \
   rm -rf $BUILD_DIR
 
 WORKDIR $CATALINA_HOME
